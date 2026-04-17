@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>CalorieTrader reads your workouts, active calories, BMR, and step count to give you real-time calorie balance data.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>CalorieTrader can write dietary energy data to Apple Health.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>CalorieTrader uses your camera to photograph food for AI-powered calorie analysis.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>CalorieTrader accesses your photo library so you can select food photos for calorie analysis.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
