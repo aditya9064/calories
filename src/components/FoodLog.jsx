@@ -269,7 +269,7 @@ function WorkoutLogger() {
           <div style={{ marginBottom: 8 }}>
             <select className="input" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
               style={{ background: 'var(--bg)', color: 'var(--text)', marginBottom: 8 }}>
-              {['Running','Cycling','Walking','Swimming','HIIT','Strength Training','Yoga','Other'].map(w =>
+              {['Resting (BMR)','Running','Cycling','Walking','Swimming','HIIT','Strength Training','Yoga','Other'].map(w =>
                 <option key={w}>{w}</option>
               )}
             </select>

@@ -8,10 +8,9 @@ export default function Dashboard() {
 
   const consumed = totalCalories(todayFood)
   const burned = totalCalories(todayWorkouts)
-  const bmr = state.bmr
-  const net = consumed - burned - bmr
+  const net = consumed - burned
   const surplus = net > 0
-  const pct = ((Math.abs(net) / (bmr + burned)) * 100).toFixed(1)
+  const pct = burned > 0 ? ((Math.abs(net) / burned) * 100).toFixed(1) : '0.0'
 
   return (
     <div className="screen">
@@ -65,8 +64,8 @@ export default function Dashboard() {
       {/* Metrics */}
       <div className="metrics-row">
         <MetricTile label="CONSUMED" value={Math.round(consumed)} unit="kcal" color="var(--text)" />
-        <MetricTile label="BURNED" value={Math.round(burned + bmr)} unit="kcal" color="var(--red)" />
-        <MetricTile label="BMR" value={Math.round(bmr)} unit="kcal" color="var(--blue)" />
+        <MetricTile label="BURNED" value={Math.round(burned)} unit="kcal" color="var(--red)" />
+        <MetricTile label="NET" value={Math.round(net)} unit="kcal" color={surplus ? 'var(--green)' : 'var(--red)'} />
       </div>
 
       {/* Goal progress */}

@@ -23,9 +23,8 @@ export default function Summary() {
   const summaries = days.map(date => {
     const consumed = totalCalories(entriesForDay(state.foodEntries, date))
     const burned = totalCalories(entriesForDay(state.workoutEntries, date))
-    const bmr = state.bmr
-    const net = consumed - burned - bmr
-    return { date, consumed, burned, bmr, net, surplus: net > 0 }
+    const net = consumed - burned
+    return { date, consumed, burned, net, surplus: net > 0 }
   })
 
   const totalNet = summaries.reduce((s, d) => s + d.net, 0)
@@ -172,7 +171,7 @@ function DayRow({ summary }) {
         <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '0 0 8px 8px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
           <MiniStat label="CONSUMED" value={Math.round(summary.consumed)} color="var(--text)" />
           <MiniStat label="BURNED" value={Math.round(summary.burned)} color="var(--red)" />
-          <MiniStat label="BMR" value={Math.round(summary.bmr)} color="var(--blue)" />
+          <MiniStat label="NET" value={Math.round(summary.net)} color={summary.surplus ? 'var(--green)' : 'var(--red)'} />
         </div>
       )}
     </div>

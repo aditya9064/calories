@@ -5,13 +5,11 @@ export default function Settings() {
   const { state, dispatch } = useStore()
   const [apiKey, setApiKey] = useState(state.apiKey)
   const [goal, setGoal] = useState(String(state.calorieGoal))
-  const [bmr, setBmr] = useState(String(state.bmr))
   const [saved, setSaved] = useState(false)
 
   function save() {
     dispatch({ type: 'SET_API_KEY', payload: apiKey.trim() })
     dispatch({ type: 'SET_GOAL', payload: parseFloat(goal) || 2000 })
-    dispatch({ type: 'SET_BMR', payload: parseFloat(bmr) || 1800 })
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
   }
@@ -64,21 +62,13 @@ export default function Settings() {
           </p>
         </div>
 
-        <div>
-          <div className="label" style={{ marginBottom: 6 }}>RESTING BMR (kcal)</div>
-          <input className="input" type="number" inputMode="decimal" value={bmr} onChange={e => setBmr(e.target.value)} placeholder="1800" />
-          <p style={{ fontSize: 11, color: 'var(--gray)', marginTop: 4 }}>
-            Calories your body burns at rest. Use a BMR calculator or Apple Health estimate.
-          </p>
-        </div>
       </div>
 
       {/* How net is calculated */}
       <div className="card">
         <div className="label" style={{ marginBottom: 10 }}>HOW NET IS CALCULATED</div>
         <FormulaRow label="Consumed" sign="+" color="var(--green)" />
-        <FormulaRow label="Active calories burned" sign="−" color="var(--red)" />
-        <FormulaRow label="BMR (resting burn)" sign="−" color="var(--blue)" />
+        <FormulaRow label="All calories burned (workouts + resting)" sign="−" color="var(--red)" />
         <hr />
         <FormulaRow label="Net calories" sign="=" color="var(--text)" bold />
         <p style={{ fontSize: 12, color: 'var(--gray)', marginTop: 8 }}>
