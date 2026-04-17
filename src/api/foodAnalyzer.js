@@ -1,22 +1,20 @@
 export async function analyzeFood(imageBase64, apiKey) {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
+      'Authorization': `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'claude-opus-4-7',
+      model: 'gpt-4o',
       max_tokens: 1024,
       messages: [
         {
           role: 'user',
           content: [
             {
-              type: 'image',
-              source: { type: 'base64', media_type: 'image/jpeg', data: imageBase64 },
+              type: 'image_url',
+              image_url: { url: `data:image/jpeg;base64,${imageBase64}`, detail: 'high' },
             },
             {
               type: 'text',
@@ -44,7 +42,7 @@ Be precise with calorie estimates. confidence is 0-1.`,
   }
 
   const data = await response.json()
-  const text = data.content?.[0]?.text?.trim() || ''
+  const text = data.choices?.[0]?.message?.content?.trim() || ''
 
   try {
     return JSON.parse(text)

@@ -23,7 +23,7 @@ export default function FoodLog() {
     setError('')
 
     if (!state.apiKey) {
-      setError('Add your Anthropic API key in Settings first.')
+      setError('Add your OpenAI API key in Settings first.')
       return
     }
     setAnalyzing(true)

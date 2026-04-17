@@ -30,17 +30,17 @@ export default function Settings() {
         <div className="label" style={{ marginBottom: 14 }}>AI FOOD ANALYSIS</div>
 
         <div style={{ marginBottom: 12 }}>
-          <div className="label" style={{ marginBottom: 6 }}>ANTHROPIC API KEY</div>
+          <div className="label" style={{ marginBottom: 6 }}>OPENAI API KEY</div>
           <input
             className="input"
             type="password"
             value={apiKey}
             onChange={e => setApiKey(e.target.value)}
-            placeholder="sk-ant-..."
+            placeholder="sk-..."
             autoComplete="off"
           />
           <p style={{ fontSize: 11, color: 'var(--gray)', marginTop: 6 }}>
-            Required for photo-based calorie analysis. Get yours at console.anthropic.com
+            Required for photo-based calorie analysis (GPT-4o vision). Get yours at platform.openai.com
           </p>
         </div>
 
